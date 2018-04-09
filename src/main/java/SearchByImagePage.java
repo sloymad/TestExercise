@@ -18,13 +18,13 @@ public class SearchByImagePage {
     private WebElement allResultButton;
 
 
-    public void  searchSelenideLogo(){
+    public boolean searchSelenideLogo(){
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        logoOfTheSelenide.click();
+       return logoOfTheSelenide.getText().contains("Selenide");
     }
 
     public void backToResultList(){

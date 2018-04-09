@@ -1,5 +1,7 @@
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
+
 public class MoveToImagesSearch extends TestBase {
 
     @Test
@@ -7,7 +9,9 @@ public class MoveToImagesSearch extends TestBase {
         googlePage.startSearch("Selenide");
         searchResultPage.checkTopResult();
         searchResultPage.moveToImagesSearch();
-        searchByImagePage.searchSelenideLogo();
+        //searchByImagePage.searchSelenideLogo();
+        assertEquals("Лого присутствует:", searchByImagePage.searchSelenideLogo(), false);
+
     }
 
 }
