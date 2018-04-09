@@ -1,36 +1,33 @@
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
+@FindBy(id = "rso")
 public class SearchResultPage {
 
-    WebDriver driver;
+    private WebDriver driver;
 
-    public SearchResultPage(WebDriver driver) {
-        this.driver = driver;
-    }
+    @FindBy(xpath = "//*[@id='rso']//h3/a")
+    private List<WebElement> firstTopResult;
 
-    public By firstTopResult = By.xpath("//*[@id='rso']//h3/a");
-    @FindBy(xpath = "//a[@class='q qs'][text()='Images']")
+    @FindBy(linkText = "Картинки")
     private WebElement imagesButton;
 
 
-
-    public SearchByImagePage moveToImagesSearch(){
+    public void moveToImagesSearch() {
         imagesButton.click();
-        return new SearchByImagePage(driver);
     }
 
-    public String getTopResult() {
-        List<WebElement> findElements = driver.findElements(firstTopResult);
-      // String first_link = findElements.get(0).getAttribute("href");
-       String text_link = findElements.get(0).getText();
-        //return first_link;
-        return text_link;
+    public boolean checkTopResult() {
+       return firstTopResult.get(0).getText().contains("Selenide");
+    }
 
+    public SearchResultPage(WebDriver driver) {
+        PageFactory.initElements(driver, this);
+        this.driver = driver;
     }
 
 
