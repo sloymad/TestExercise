@@ -1,3 +1,6 @@
+package pages;
+
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -6,7 +9,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 
 public class SearchByImagePage {
     private WebDriver driver;
@@ -17,7 +19,7 @@ public class SearchByImagePage {
     @FindBy(xpath = "//a[@class='q qs'][text()='Все']")
     private WebElement allResultButton;
 
-
+    @Step("Поиск логотипа")
     public boolean searchSelenideLogo(){
         try {
             Thread.sleep(3000);
@@ -26,7 +28,7 @@ public class SearchByImagePage {
         }
        return logoOfTheSelenide.getText().contains("Selenide");
     }
-
+    @Step("Переход к результатам обратно")
     public void backToResultList(){
         allResultButton.click();
     }
